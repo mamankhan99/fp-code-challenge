@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Metrics } from './api/types';
 import useFetch from './hooks/useFetch';
+import Theme from './theme';
 
 const DataWrapper = styled.div`
   display: flex;
@@ -31,4 +32,12 @@ function App() {
   );
 }
 
-export default App;
+function WrappedApp() {
+  return (
+    <Theme>
+      <App />;
+    </Theme>
+  );
+}
+
+export default WrappedApp;
