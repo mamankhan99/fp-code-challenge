@@ -1,6 +1,15 @@
 import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { Metrics } from './api/types';
 import getMetricsData from './api';
+
+const DataWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: white;
+`;
 
 function App() {
   const [data, setData] = useState<Metrics[] | null>(null);
@@ -17,13 +26,13 @@ function App() {
       <h1>Data</h1>
       {data &&
         data.map((item: Metrics) => (
-          <div key={item.id}>
+          <DataWrapper key={item.id}>
             <p>{item.label}</p>
             <p>{item.category}</p>
             <p>{item.description}</p>
             <p>{item.type}</p>
             <p>{item.value}</p>
-          </div>
+          </DataWrapper>
         ))}
     </div>
   );
