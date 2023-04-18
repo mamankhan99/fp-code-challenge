@@ -9,19 +9,20 @@ const useFetch = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    async function fetchData() {
+    const fetchData = async () => {
       setLoading(true);
-      const response = await getMetricsData();
-      setData(response.data);
-    }
 
-    try {
-      fetchData();
-    } catch (err) {
-      setError(getErrorMessage(err));
-    } finally {
-      setLoading(false);
-    }
+      try {
+        const response = await getMetricsData();
+        setData(response.data);
+      } catch (err) {
+        setError(getErrorMessage(err));
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return { data, error, loading };

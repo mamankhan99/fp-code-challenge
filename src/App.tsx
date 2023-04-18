@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Metrics } from './api/types';
-import getMetricsData from './api';
+import useFetch from './hooks/useFetch';
 
 const DataWrapper = styled.div`
   display: flex;
@@ -12,15 +11,7 @@ const DataWrapper = styled.div`
 `;
 
 function App() {
-  const [data, setData] = useState<Metrics[] | null>(null);
-
-  useEffect(() => {
-    async function fetchData() {
-      const response = await getMetricsData();
-      setData(response.data);
-    }
-    fetchData();
-  }, []);
+  const { loading, error, data } = useFetch();
   return (
     <div className="App">
       <h1>Data</h1>
@@ -34,6 +25,8 @@ function App() {
             <p>{item.value}</p>
           </DataWrapper>
         ))}
+      {loading && <p>Loading...</p>}
+      {error && <p>Error</p>}
     </div>
   );
 }
