@@ -1,13 +1,28 @@
 import { ThemeProvider } from 'styled-components';
 
 const theme = {
-  dark: {
-    background: '#000',
-    text: '#fff',
+  color: {
+    bright_green: '#9fe870',
+    forest_green: '#163300',
+    red: '#ff0000',
+    green: '#003300',
   },
-  light: {
-    background: '#fff',
-    text: '#000',
+  fontFamily: 'Arial, Helvetica, sans-serif',
+  font: {
+    family: {
+      primary: 'Arial',
+      secondary: 'Verdana',
+    },
+    size: {
+      small: '12px',
+      medium: '16px',
+      large: '24px',
+    },
+    weight: {
+      light: 300,
+      regular: 400,
+      bold: 700,
+    },
   },
 };
 

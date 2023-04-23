@@ -1,41 +1,63 @@
-import styled from 'styled-components';
-import { Metrics } from './api/types';
+import styled, { createGlobalStyle } from 'styled-components';
+import { useMemo } from 'react';
 import useFetch from './hooks/useFetch';
 import Theme from './theme';
+import MetricsTable from './components/MetricsTable';
+import Category from './components/Category/Category';
+import MetricsContext from './contexts';
 
-const DataWrapper = styled.div`
+const Heading = styled.div`
+  font-family: ${(props) => props.theme.font.family.primary};
+`;
+
+const GlobalStyles = createGlobalStyle`
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+`;
+
+const Root = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  background-color: black;
-  color: white;
+  justify-content: center;
+  padding: 1rem;
+  font-family: ${(props) => props.theme.fontFamily};
 `;
 
 function App() {
-  const { loading, error, data } = useFetch();
+  const { loading, error, data: metrics } = useFetch();
+
+  const data = useMemo(
+    () => ({
+      data: metrics,
+    }),
+    [metrics]
+  );
+
   return (
-    <div className="App">
-      <h1>Data</h1>
-      {data &&
-        data.map((item: Metrics) => (
-          <DataWrapper key={item.id}>
-            <p>{item.label}</p>
-            <p>{item.category}</p>
-            <p>{item.description}</p>
-            <p>{item.type}</p>
-            <p>{item.value}</p>
-          </DataWrapper>
-        ))}
+    <Root>
+      <Heading>Metrics</Heading>
+      {data && (
+        <MetricsContext.Provider value={data}>
+          <MetricsTable data={metrics} />
+          <Category />
+        </MetricsContext.Provider>
+      )}
       {loading && <p>Loading...</p>}
       {error && <p>Error</p>}
-    </div>
+    </Root>
   );
 }
 
 function WrappedApp() {
   return (
     <Theme>
-      <App />;
+      <GlobalStyles />
+      <App />
     </Theme>
   );
 }
