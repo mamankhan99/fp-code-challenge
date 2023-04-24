@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import {
   Chart as ChartJS,
   LineController,
@@ -15,7 +15,7 @@ import useFetch from './hooks/useFetch';
 import Theme from './theme';
 import MetricsTable from './components/MetricsTable';
 import Category from './components/Category/Category';
-import MetricsContext from './contexts';
+import { MetricsContext, LabelContext } from './contexts';
 
 ChartJS.register(
   LineController,
@@ -49,6 +49,12 @@ const Root = styled.div`
 `;
 
 function App() {
+  const [label, setLabel] = useState('');
+
+  const handleLabelChange = (value: string) => {
+    setLabel((prev: string) => (value === prev ? '' : value));
+  };
+
   const { loading, error, data: metrics } = useFetch();
 
   const data = useMemo(
@@ -62,10 +68,18 @@ function App() {
     <Root>
       <h2>FactoryPal Coding Challenge</h2>
       {data && (
-        <MetricsContext.Provider value={data}>
-          <MetricsTable data={metrics} />
-          <Category />
-        </MetricsContext.Provider>
+        <LabelContext.Provider
+          // eslint-disable-next-line react/jsx-no-constructed-context-values
+          value={{
+            label,
+            setLabel: handleLabelChange,
+          }}
+        >
+          <MetricsContext.Provider value={data}>
+            <MetricsTable data={metrics} />
+            <Category />
+          </MetricsContext.Provider>
+        </LabelContext.Provider>
       )}
       {loading && <p>Loading...</p>}
       {error && <p>Error</p>}

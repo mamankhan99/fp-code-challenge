@@ -1,9 +1,10 @@
 import { Pie, getElementAtEvent } from 'react-chartjs-2';
 
-import { MouseEvent, useRef } from 'react';
+import { MouseEvent, useContext, useRef } from 'react';
 import { InteractionItem } from 'chart.js';
 import { Metrics } from '../../api/types';
 import { normalizeDataSet } from '../../utils';
+import { LabelContext } from '../../contexts';
 
 type Props = {
   data: Metrics[];
@@ -16,6 +17,8 @@ function PieChart({ data }: Props) {
 
   const labels = normalizedData.map((item) => item.label);
   const values = normalizedData.map((item) => item.value);
+
+  const { setLabel } = useContext(LabelContext);
 
   const chartData = {
     labels,
@@ -39,13 +42,9 @@ function PieChart({ data }: Props) {
 
     if (!element.length) return;
 
-    const { datasetIndex, index } = element[0];
+    const { index } = element[0];
 
-    console.log(
-      chartData.labels[index],
-      chartData.datasets[datasetIndex].data[index]
-    );
-    // printElementsAtEvent(getElementsAtEvent(chart, event));
+    setLabel(chartData.labels[index]);
   };
 
   return (

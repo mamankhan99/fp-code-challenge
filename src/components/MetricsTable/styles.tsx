@@ -5,9 +5,9 @@ export const Table = styled.table`
   table-layout: fixed;
   border: 0.5px solid;
   background-color: aliceblue;
+  box-shadow: 0 0 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
   color: black;
   width: 100%;
-  border-radius: 5%;
 `;
 
 export const Thead = styled.thead`
@@ -18,11 +18,15 @@ export const Thead = styled.thead`
 `;
 
 export const TH = styled.th`
-  padding: 0.2rem;
+  padding: 0.1rem;
 `;
 
 export const TData = styled.td`
-  padding: 0.2rem;
+  padding: 0.1rem;
   border: 0.5px solid;
   height: 3rem;
+`;
+
+export const Trow = styled.tr<{ isSelected: boolean }>`
+  background-color: ${({ isSelected }) => (isSelected ? 'pink' : 'aliceblue')};
 `;

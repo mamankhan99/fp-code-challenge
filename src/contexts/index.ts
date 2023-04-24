@@ -1,3 +1,4 @@
 import MetricsContext from './MetricsContext';
+import LabelContext from './LabelContext';
 
-export default MetricsContext;
+export { MetricsContext, LabelContext };

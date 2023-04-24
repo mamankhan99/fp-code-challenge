@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import Dropdown from '../Dropdown';
 import Statistics from '../Statistics';
-import MetricsContext from '../../contexts';
+import { MetricsContext } from '../../contexts';
 import { Metrics } from '../../api/types';
 import PieChart from '../PieChart';
 import { Container, DropdownWrapper, InfoWrapper } from './styles';
