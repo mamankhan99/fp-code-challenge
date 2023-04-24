@@ -9,6 +9,7 @@ import {
   LinearScale,
   Title,
   Tooltip,
+  Legend,
 } from 'chart.js';
 import useFetch from './hooks/useFetch';
 import Theme from './theme';
@@ -23,12 +24,9 @@ ChartJS.register(
   LinearScale,
   ArcElement,
   Tooltip,
-  Title
+  Title,
+  Legend
 );
-
-const Heading = styled.div`
-  font-family: ${(props) => props.theme.font.family.primary};
-`;
 
 const GlobalStyles = createGlobalStyle`
   html,
@@ -45,6 +43,7 @@ const Root = styled.div`
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  background-color: aliceblue;
   font-family: ${(props) => props.theme.fontFamily};
 `;
 
@@ -60,7 +59,7 @@ function App() {
 
   return (
     <Root>
-      <Heading>Metrics</Heading>
+      <h2>FactoryPal Coding Challenge</h2>
       {data && (
         <MetricsContext.Provider value={data}>
           <MetricsTable data={metrics} />
