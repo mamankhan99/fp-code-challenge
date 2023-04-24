@@ -22,8 +22,8 @@ function PieChart({ data }: Props) {
     datasets: [
       {
         data: values,
-        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-        hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+        backgroundColor: ['#36A2EB', '#FFCE56', '#FF6384'],
+        hoverBackgroundColor: ['#36A2EB', '#FFCE56', '#FF6384'],
       },
     ],
   };
@@ -48,7 +48,14 @@ function PieChart({ data }: Props) {
     // printElementsAtEvent(getElementsAtEvent(chart, event));
   };
 
-  return <Pie ref={chartRef} data={chartData} onClick={onClick} />;
+  return (
+    <Pie
+      ref={chartRef}
+      data={chartData}
+      onClick={onClick}
+      options={{ responsive: true }}
+    />
+  );
 }
 
 export default PieChart;

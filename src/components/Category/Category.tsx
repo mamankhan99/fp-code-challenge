@@ -1,18 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
-import styled from 'styled-components';
 import Dropdown from '../Dropdown';
 import Statistics from '../Statistics';
 import MetricsContext from '../../contexts';
 import { Metrics } from '../../api/types';
 import PieChart from '../PieChart';
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
-`;
+import { Container, DropdownWrapper, InfoWrapper } from './styles';
 
 function Category() {
   const { data } = useContext(MetricsContext);
@@ -42,18 +34,20 @@ function Category() {
 
   return (
     <Container>
-      <div>
+      <DropdownWrapper>
         <h4>Select Category: </h4>
         <Dropdown
           id="categories"
           options={categories}
           onChange={(category: string) => setSelectedCategory(category)}
         />
+      </DropdownWrapper>
+      <InfoWrapper>
         <Statistics data={filteredData} />
         {filteredData && filteredData.length && (
           <PieChart data={filteredData} />
         )}
-      </div>
+      </InfoWrapper>
     </Container>
   );
 }

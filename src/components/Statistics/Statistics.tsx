@@ -1,26 +1,21 @@
-import styled from 'styled-components';
 import { Metrics } from '../../api/types';
+import { Container, StatsWrapper } from './styles';
 
 type Props = {
   data: Metrics[];
 };
 
-const StatsWrapper = styled.div<{ isNegative: boolean }>`
-  color: ${({ isNegative, theme }) =>
-    isNegative ? theme.color.red : theme.color.green};
-`;
-
 function Statistics({ data }: Props) {
   return (
-    <div>
-      <h1>Statistics</h1>
+    <Container>
+      <h3>Statistics</h3>
       {data.map((metrics: Metrics) => (
         <StatsWrapper key={metrics.id} isNegative={metrics.value < 0}>
           <h3>{metrics.label}</h3>
           <p>{`${metrics.value}${metrics.type === 'percentage' ? '%' : ''}`}</p>
         </StatsWrapper>
       ))}
-    </div>
+    </Container>
   );
 }
 

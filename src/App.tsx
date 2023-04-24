@@ -31,8 +31,9 @@ ChartJS.register(
 const GlobalStyles = createGlobalStyle`
   html,
   body {
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
+    min-height: 100%;
     box-sizing: border-box;
   }
 `;
