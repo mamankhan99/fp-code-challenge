@@ -13,6 +13,5 @@ export const StatsWrapper = styled.div<{ isNegative: boolean }>`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: ${({ isNegative, theme }) =>
-    isNegative ? theme.color.red : theme.color.green};
+  color: ${({ isNegative }) => (isNegative ? 'red' : 'green')};
 `;

@@ -8,22 +8,6 @@ const theme = {
     green: '#003300',
   },
   fontFamily: 'Arial, Helvetica, sans-serif',
-  font: {
-    family: {
-      primary: 'Arial',
-      secondary: 'Verdana',
-    },
-    size: {
-      small: '12px',
-      medium: '16px',
-      large: '24px',
-    },
-    weight: {
-      light: 300,
-      regular: 400,
-      bold: 700,
-    },
-  },
 };
 
 type Props = {
