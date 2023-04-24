@@ -17,6 +17,6 @@ You can check the running demo on https://fp-code-challenge.vercel.app/
 
 ### Leftovers
 
-- In depth Testing
+- In depth Testing (In Progress)
 - Responsiveness
 - More Interactions on UI
