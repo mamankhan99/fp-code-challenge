@@ -11,8 +11,9 @@ function Statistics({ data }: Props) {
       <h3>Statistics</h3>
       {data.map((metrics: Metrics) => (
         <StatsWrapper key={metrics.id} isNegative={metrics.value < 0}>
-          <h3>{metrics.label}</h3>
+          <h4>{metrics.label}:</h4>
           <p>{`${metrics.value}${metrics.type === 'percentage' ? '%' : ''}`}</p>
+          {metrics.category !== 'efficiency' && <span>{metrics.type}</span>}
         </StatsWrapper>
       ))}
     </Container>
