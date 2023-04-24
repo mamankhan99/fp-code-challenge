@@ -4,6 +4,7 @@ import Dropdown from '../Dropdown';
 import Statistics from '../Statistics';
 import MetricsContext from '../../contexts';
 import { Metrics } from '../../api/types';
+import PieChart from '../PieChart';
 
 const Container = styled.div`
   display: flex;
@@ -49,6 +50,9 @@ function Category() {
           onChange={(category: string) => setSelectedCategory(category)}
         />
         <Statistics data={filteredData} />
+        {filteredData && filteredData.length && (
+          <PieChart data={filteredData} />
+        )}
       </div>
     </Container>
   );

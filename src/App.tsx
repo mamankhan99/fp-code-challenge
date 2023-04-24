@@ -1,10 +1,30 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import { useMemo } from 'react';
+import {
+  Chart as ChartJS,
+  LineController,
+  LineElement,
+  PointElement,
+  ArcElement,
+  LinearScale,
+  Title,
+  Tooltip,
+} from 'chart.js';
 import useFetch from './hooks/useFetch';
 import Theme from './theme';
 import MetricsTable from './components/MetricsTable';
 import Category from './components/Category/Category';
 import MetricsContext from './contexts';
+
+ChartJS.register(
+  LineController,
+  LineElement,
+  PointElement,
+  LinearScale,
+  ArcElement,
+  Tooltip,
+  Title
+);
 
 const Heading = styled.div`
   font-family: ${(props) => props.theme.font.family.primary};
